@@ -7,12 +7,12 @@ export default function Cage(props: any) {
         <div className="container">
           <div className="row">
             <div className="col-sm-3">
-              <object className="svg-class" type="image/svg+xml" data="hippo.svg" ></object>
+              <object className="svg-class" type="image/svg+xml" data="hippo.svg" aria-label="hoge" ></object>
             </div>
             <div className="col-sm-3">
             </div>
             <div className="col-sm-3">
-              <object className="svg-class" type="image/svg+xml" data="hippo.svg" ></object>
+              <object className="svg-class" type="image/svg+xml" data="hippo.svg" aria-label="hoge" ></object>
             </div>
           </div>
         </div>
