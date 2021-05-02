@@ -1,8 +1,8 @@
 import React from 'react';
 
-export default function Action(props: any) {
+export default class Action extends React.Component {
+  render() {
   return (
-    <React.Fragment>
       <div className="action-form">
         <form>
           <div className="mb-3">
@@ -20,7 +20,7 @@ export default function Action(props: any) {
           <button type="submit" className="btn btn-primary">Submit</button>
         </form>
       </div>
-    </React.Fragment>
-  );
+    );
 
+  }
 }
