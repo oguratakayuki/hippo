@@ -6,7 +6,7 @@ import reportWebVitals from './reportWebVitals';
 
 ReactDOM.render(
   <React.StrictMode>
-    <Hippo />
+    <Hippo name='hoge' age={10} />
   </React.StrictMode>,
   document.getElementById('root')
 );

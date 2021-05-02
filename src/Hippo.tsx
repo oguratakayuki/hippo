@@ -1,13 +1,20 @@
 import React from 'react';
 import './App.css';
-import Cage from './cage';
-import AnimalInfo from './animalInfo';
+import Cage from './Cage';
+import AnimalInfo from './AnimalInfo';
+import Action from './Action';
 
-function Hippo() {
+type Props = {
+  name: string;
+  age: number;
+}
+
+function Hippo<Props>(props) {
   return (
     <div className="wrapper">
       <Cage />
-      <AnimalInfo />
+      <AnimalInfo name={props.name} age={props.age} />
+      <Action />
     </div>
   );
 }
