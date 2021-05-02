@@ -4,29 +4,48 @@ export default class Action extends React.Component {
   constructor(props) {
     super(props);
     console.log('here');
-    this.state = {isToggleOn: true};
-    this.handleClick = this.handleClick.bind(this);
+    this.state = {
+      actionType: '',
+      actionValue: ''
+    };
+    this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleInputChange = this.handleInputChange.bind(this);
   }
-  handleClick() {
-    console.log('The link was clicked.');
+  handleSubmit(event) {
+    console.log(this.state);
+    event.preventDefault();
   }
+  handleInputChange(event) {
+    const target = event.target;
+    const value = target.type === 'checkbox' ? target.checked : target.value;
+    const name = target.name;
+
+    this.setState({
+      [name]: value
+    });
+    console.log(this.state);
+  }
+
+
   render() {
     return (
-      <div className="action-form">
-          <div className="mb-3">
-            <select className="form-select" aria-label="Default select example" >
-              <option value="DEFAULT" disabled>Open this select menu</option>
-              <option value="1">feed</option>
-              <option value="2">lesson</option>
-              <option value="3">walk</option>
-            </select>
-          </div>
-          <div className="mb-3">
-            <label htmlFor="option-input" className="form-label">action option</label>
-            <input type="email" className="form-control" id="option-input" />
-          </div>
-          <button className="btn btn-primary" onClick={this.handleClick}>Submit</button>
-      </div>
+      <form  onSubmit={this.handleSubmit}>
+        <div className="action-form">
+            <div className="mb-3">
+              <select className="form-select" aria-label="Default select example" name="actionType" onChange={this.handleInputChange} >
+                <option value="DEFAULT" disabled>Open this select menu</option>
+                <option value="1">feed</option>
+                <option value="2">lesson</option>
+                <option value="3">walk</option>
+              </select>
+            </div>
+            <div className="mb-3">
+              <label htmlFor="option-input" className="form-label">action option</label>
+              <input type="email" className="form-control" id="option-input" name="actionValue" onChange={this.handleInputChange}  />
+            </div>
+            <button className="btn btn-primary" onClick={this.handleSubmit}>Submit</button>
+        </div>
+      </form>
     );
 
   }
