@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import Hippo from './Hippo';
+import {Hippo} from './Hippo';
 import reportWebVitals from './reportWebVitals';
 
 ReactDOM.render(

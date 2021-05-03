@@ -1,6 +1,7 @@
 import React from 'react';
+import {HippoProps} from './Hippo';
 
-export default function AnimalInfo(props: any) {
+export default function AnimalInfo(props: HippoProps) {
   const { name, age } = props;
   return (
     <React.Fragment>

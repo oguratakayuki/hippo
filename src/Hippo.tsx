@@ -4,12 +4,12 @@ import Cage from './Cage';
 import AnimalInfo from './AnimalInfo';
 import Action from './Action';
 
-type HippoProps = {
+export type HippoProps = {
   name: string;
   age: number;
 }
 
-function Hippo(props: HippoProps) {
+export function Hippo(props: HippoProps) {
   return (
     <div className="wrapper">
       <Cage />
@@ -19,4 +19,3 @@ function Hippo(props: HippoProps) {
   );
 }
 
-export default Hippo;
