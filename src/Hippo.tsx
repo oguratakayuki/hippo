@@ -4,12 +4,12 @@ import Cage from './Cage';
 import AnimalInfo from './AnimalInfo';
 import Action from './Action';
 
-type Props = {
+type HippoProps = {
   name: string;
   age: number;
 }
 
-function Hippo<Props>(props) {
+function Hippo(props: HippoProps) {
   return (
     <div className="wrapper">
       <Cage />

@@ -1,7 +1,7 @@
 import React from 'react';
 
 export default class Action extends React.Component {
-  constructor(props) {
+  constructor(props: any) {
     super(props);
     console.log('here');
     this.state = {
@@ -11,13 +11,13 @@ export default class Action extends React.Component {
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleInputChange = this.handleInputChange.bind(this);
   }
-  handleSubmit(event) {
+  handleSubmit(event: React.FormEvent<HTMLFormElement>): void {
     console.log(this.state);
     event.preventDefault();
   }
-  handleInputChange(event) {
+  handleInputChange(event: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>): void {
     const target = event.target;
-    const value = target.type === 'checkbox' ? target.checked : target.value;
+    const value =  target.value;
     const name = target.name;
 
     this.setState({
@@ -41,9 +41,9 @@ export default class Action extends React.Component {
             </div>
             <div className="mb-3">
               <label htmlFor="option-input" className="form-label">action option</label>
-              <input type="email" className="form-control" id="option-input" name="actionValue" onChange={this.handleInputChange}  />
+              <input type="text" className="form-control" id="option-input" name="actionValue" onChange={this.handleInputChange}  />
             </div>
-            <button className="btn btn-primary" onClick={this.handleSubmit}>Submit</button>
+            <button type="submit" className="btn btn-primary">Submit</button>
         </div>
       </form>
     );
