@@ -3,10 +3,14 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import {Hippo} from './Hippo';
 import reportWebVitals from './reportWebVitals';
+import { Provider } from 'react-redux'
+import store from './store'
 
 ReactDOM.render(
   <React.StrictMode>
-    <Hippo name='hoge' age={10} />
+    <Provider store={store}>
+      <Hippo name='hoge' age={10} />
+    </Provider>
   </React.StrictMode>,
   document.getElementById('root')
 );
