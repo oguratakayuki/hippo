@@ -17,9 +17,11 @@ export const hippoSlice = createSlice({
   name: 'Hippo',
   initialState,
   reducers: {
-    feed: (state, action: PayloadAction<Feed>) => ({
-      ...state,
-      weight: state.weight + action.payload.quantity
-    }),
+    feed: (state, action: PayloadAction<Feed>) => {
+      return {
+        ...state,
+        weight: state.weight + action.payload.quantity
+      };
+    },
   },
 });
