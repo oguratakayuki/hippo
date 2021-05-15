@@ -10,7 +10,7 @@ export type hippoState = {
 };
 
 const initialState: hippoState = {
-  weight: 0,
+  weight: 1,
 };
 
 export const hippoSlice = createSlice({
@@ -18,9 +18,11 @@ export const hippoSlice = createSlice({
   initialState,
   reducers: {
     feed: (state, action: PayloadAction<Feed>) => {
+      let weight: number = state.weight;
+      weight = weight * 200;
       return {
         ...state,
-        weight: state.weight + action.payload.quantity
+        weight: weight
       };
     },
   },
