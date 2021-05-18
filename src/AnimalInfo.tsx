@@ -23,8 +23,10 @@ export default function AnimalInfo(props: HippoProps) {
           <dt>name</dt><dd>{name}</dd>
           <dt>age</dt><dd>{age}</dd>
           <dt>gender</dt><dd>men</dd>
-          <dt>tall</dt><dd>2m</dd>
-          <dt>weight</dt><dd>{hippo.weight}kg</dd>
+          <dt>height</dt><dd>{hippo.height}cm</dd>
+          <dt>HP</dt><dd>{hippo.hp}cm</dd>
+          <dt>賢さ</dt><dd>{hippo.intelligence}</dd>
+          <dt>強さ</dt><dd>{hippo.strength}</dd>
           <dt>status</dt><dd>angry</dd>
         </dl>
       </div>

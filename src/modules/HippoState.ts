@@ -6,11 +6,17 @@ type Feed = {
 };
 
 export type hippoState = {
-  weight: number;
+  height: number;
+  hp: number;
+  intelligence: number;
+  strength: number;
 };
 
 const initialState: hippoState = {
-  weight: 1,
+  height: 1,
+  hp: 1,
+  intelligence: 1,
+  strength: 1,
 };
 
 export const hippoSlice = createSlice({
@@ -18,12 +24,14 @@ export const hippoSlice = createSlice({
   initialState,
   reducers: {
     feed: (state, action: PayloadAction<Feed>) => {
-      let weight: number = state.weight;
-      weight = weight * 200;
+      let height: number = state.height;
+      height = height * 200;
       return {
         ...state,
-        weight: weight
+        height: height
       };
+    },
+    walk: (state, action: PayloadAction<Feed>) => {
     },
   },
 });
