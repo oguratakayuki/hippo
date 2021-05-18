@@ -5,7 +5,12 @@ import { counterSlice } from './modules/counter';
 import { logSlice, LogState } from './modules/log';
 import { hippoSlice, hippoState } from './modules/HippoState';
 import { AppState } from './store';
+import breedingTypeJson from "./breedingType.json";
 
+interface BreedingTypeInterface {
+    [key: string]: string;
+}
+const breedingType: BreedingTypeInterface = breedingTypeJson;
 
 export default function Action() {
   const { count, log, hippo } = useSelector<
@@ -24,11 +29,11 @@ export default function Action() {
     dispatch(addLog({ id: 1, text: 'hoge' }));
     dispatch(incrementCount());
     const target = event.target as HTMLElement; 
-    const actionType1: number = Number(event.currentTarget.value);
-    if ([2,3].includes(actionType1)) {
+    const actionType1: string = String(event.currentTarget.value);
+    if (["lesson","walk"].includes(actionType1)) {
       const unit = document.querySelector("p#actionValueUnit") as HTMLElement;
       unit.innerHTML = "時間";
-    } else if ( actionType1 == 1) {
+    } else if ( actionType1 == "feed") {
       const unit = document.querySelector("p#actionValueUnit") as HTMLElement;
       unit.innerHTML = "個";
       const secondOption = document.querySelector("#second-option") as HTMLElement;
@@ -50,9 +55,9 @@ export default function Action() {
           <div className="mb-3">
             <select className="form-select option1" aria-label="Default select example" name="actionType1" onChange={(event) => { actionTypeChange(event) }} >
               <option value="DEFAULT" disabled>Open this select menu</option>
-              <option value="1">食事</option>
-              <option value="2">訓練</option>
-              <option value="3">お散歩</option>
+              {Object.keys(breedingType).map(key =>
+                <option value={key}>{breedingType[key]}</option>
+              )}
             </select>
           </div>
           <div className="mb-3" style={{display: 'none'}} id="second-option">
@@ -72,5 +77,4 @@ export default function Action() {
       </div>
     </form>
   );
-
 }
