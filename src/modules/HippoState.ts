@@ -1,7 +1,7 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
 type Feed = {
-  food: number;
+  food: string;
   quantity: number;
 };
 
@@ -25,10 +25,16 @@ export const hippoSlice = createSlice({
   reducers: {
     feed: (state, action: PayloadAction<Feed>) => {
       let height: number = state.height;
-      height = height * 200;
+      let hp: number = state.hp;
+      height = height * 10;
+      if (action.payload.food == "meat") {
+        console.log("is meat");
+        hp = hp * 20;
+      }
       return {
         ...state,
-        height: height
+        height: height,
+        hp: hp
       };
     },
     walk: (state, action: PayloadAction<Feed>) => {

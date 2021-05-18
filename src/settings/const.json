@@ -1,0 +1,14 @@
+{
+  "breedingType": {
+    "walk":   "お散歩",
+    "feed":   "食事",
+    "lesson": "レッスン"
+  },
+  "foodType": {
+    "meat": "お肉",
+    "vegetable": "お野菜",
+    "breedingCommittee": "飼育員",
+    "visitors": "来場者"
+  }
+
+}

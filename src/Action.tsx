@@ -5,12 +5,19 @@ import { counterSlice } from './modules/counter';
 import { logSlice, LogState } from './modules/log';
 import { hippoSlice, hippoState } from './modules/HippoState';
 import { AppState } from './store';
-import breedingTypeJson from "./breedingType.json";
+import constJson from "./settings/const.json";
 
 interface BreedingTypeInterface {
     [key: string]: string;
 }
-const breedingType: BreedingTypeInterface = breedingTypeJson;
+const breedingType: BreedingTypeInterface = constJson.breedingType;
+
+interface FoodTypeInterface {
+    [key: string]: string;
+}
+const foodType: FoodTypeInterface = constJson.foodType;
+
+
 
 export default function Action() {
   const { count, log, hippo } = useSelector<
@@ -28,11 +35,13 @@ export default function Action() {
   const actionTypeChange = (event:  React.ChangeEvent<HTMLSelectElement>) => {
     dispatch(addLog({ id: 1, text: 'hoge' }));
     dispatch(incrementCount());
-    const target = event.target as HTMLElement; 
-    const actionType1: string = String(event.currentTarget.value);
+    const actionType1Elem = (document.getElementById("actionType1")) as HTMLSelectElement;
+    const actionType1: string = String(actionType1Elem.options[actionType1Elem.selectedIndex].value);
     if (["lesson","walk"].includes(actionType1)) {
       const unit = document.querySelector("p#actionValueUnit") as HTMLElement;
       unit.innerHTML = "時間";
+      const secondOption = document.querySelector("#second-option") as HTMLElement;
+      secondOption.style.display = "none";
     } else if ( actionType1 == "feed") {
       const unit = document.querySelector("p#actionValueUnit") as HTMLElement;
       unit.innerHTML = "個";
@@ -43,17 +52,28 @@ export default function Action() {
   const breedAction = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     const target = event.target as HTMLElement; 
-    const element: HTMLInputElement = target.querySelector('input[name="actionValue"]') as HTMLInputElement;
-    const food: number  = Number(element.value);
-    const quantity: number = Number(target.querySelector('select')!.selectedOptions[0].value);
-    dispatch(feed({ food: food, quantity: quantity }));
+    const actionType1Elem = (document.getElementById("actionType1")) as HTMLSelectElement;
+    const actionType1: string = actionType1Elem.options[actionType1Elem.selectedIndex].value;
+    const actionType2Elem = (document.getElementById("actionType2")) as HTMLSelectElement;
+    const actionType2: string = actionType2Elem.options[actionType2Elem.selectedIndex].value;
+    const actionValueElem = (document.getElementById("actionValue")) as HTMLInputElement;
+    const actionValue: number = Number(actionValueElem.value);
+    console.log(actionType1);
+    console.log(actionType2);
+    console.log(actionValue);
+    if (actionType1 == "feed") {
+      dispatch(feed({ food: actionType2, quantity: actionValue }));
+    }
+
+
+
   };
 
   return (
     <form onSubmit={breedAction}>
       <div className="action-form">
           <div className="mb-3">
-            <select className="form-select option1" aria-label="Default select example" name="actionType1" onChange={(event) => { actionTypeChange(event) }} >
+            <select className="form-select option1" aria-label="Default select example" id="actionType1" onChange={(event) => { actionTypeChange(event) }} >
               <option value="DEFAULT" disabled>Open this select menu</option>
               {Object.keys(breedingType).map(key =>
                 <option value={key}>{breedingType[key]}</option>
@@ -61,16 +81,16 @@ export default function Action() {
             </select>
           </div>
           <div className="mb-3" style={{display: 'none'}} id="second-option">
-            <select className="form-select option2" aria-label="Default select example"  id="option-input2" name="actionType2">
+            <select className="form-select option2" aria-label="Default select example"  id="actionType2">
               <option value="DEFAULT" disabled>何を食べさせる?</option>
-              <option value="1">お肉</option>
-              <option value="2">お野菜</option>
-              <option value="3">来場者</option>
+              {Object.keys(foodType).map(key =>
+                <option value={key}>{foodType[key]}</option>
+              )}
             </select>
           </div>
           <div className="mb-3">
             <label htmlFor="option-input2" className="form-label">action option</label>
-            <input type="number" className="form-control" id="option-input2" name="actionValue" />
+            <input type="number" className="form-control"  id="actionValue" />
             <p id="actionValueUnit">時間</p>
           </div>
           <button type="submit" className="btn btn-primary">実行</button>
