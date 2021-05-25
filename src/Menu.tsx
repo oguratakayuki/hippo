@@ -12,7 +12,7 @@ type MenuState = {
 };
 
 type MenuProps = {
-  hoge?: (a: number) => void;
+  addCageAction?: (animalType: string) => void;
 };
 
 export default class Menu extends React.Component<MenuProps, MenuState> {
@@ -26,10 +26,13 @@ export default class Menu extends React.Component<MenuProps, MenuState> {
     this.setState(() => ({ mode: 'cage' }));
   }
   onClick(e: React.MouseEvent<HTMLButtonElement, MouseEvent>) {
-    console.log('here');
-    if(this.props.hoge){
-      console.log('hoge');
-      this.props.hoge(11);
+    if(this.props.addCageAction){
+      const animalTypeElement = (document.getElementById("animalType")) as HTMLSelectElement;
+      const animalType: string = String(animalTypeElement.options[animalTypeElement.selectedIndex].value);
+      this.props.addCageAction(animalType);
+
+
+
       this.setState(() => ({ mode: 'initial' }));
     }
   };
@@ -59,7 +62,7 @@ export default class Menu extends React.Component<MenuProps, MenuState> {
           <div className="container">
             <div className="row">
               <div className="col-sm-6">
-                <select className="form-select option1" aria-label="Default select example" id="actionType1" >
+                <select className="form-select option1" aria-label="Default select example" id="animalType" >
                   <option value="DEFAULT" disabled>Open this select menu</option>
                   {Object.keys(animalType).map(key =>
                     <option value={key}>{animalType[key]}</option>

@@ -3,39 +3,44 @@ import './App.css';
 import Cage2 from './Cage2';
 import Menu from './Menu';
 
-
-type MyState = {
-  cages: number[]; // like this
+type CageInfo = {
+  id: number;
+  animalType: string;
 };
 
-export default class Zoo extends React.Component<{}, MyState> {
+type Cages = {
+  cages: CageInfo[];
+};
+
+export default class Zoo extends React.Component<{}, Cages> {
   constructor(props: {}) {
     super(props);
-    this.addCage = this.addCage.bind(this)
-    this.onMyTextBoxChanged = this.onMyTextBoxChanged.bind(this);
-    this.state = {
-      cages: [],
-    };
+    this.addAnimalCage = this.addAnimalCage.bind(this)
+    this.state =  { cages: [] }
+
   }
-  addCage(){
+  addAnimalCage(animalType: string){
+    let currentCageId: number; 
+    if (this.state.cages.length > 0) {
+      currentCageId = this.state.cages[this.state.cages.length - 1].id
+    } else {
+      currentCageId = 0
+    }
     this.setState((state) => ({
-      cages: [...state.cages, 9]
+      cages: [...this.state.cages, {id: currentCageId + 1 , animalType: animalType}]
     }));
   }
-  onMyTextBoxChanged(){
-    console.log('piyo');
-    this.addCage();
-  }
+
 
   render() {
     return (
       <React.Fragment>
-        <Menu hoge={this.onMyTextBoxChanged} />
+        <Menu addCageAction={this.addAnimalCage} />
         <div className="container">
           <div className="row">
             
               {this.state.cages.map(function(cage, i){
-                       return <div className="col-sm-6"><Cage2 id={i} name='hippos cage' /> </div>
+                return <div className="col-sm-6"><Cage2 id={cage.id} name='hippos cage' animalType={cage.animalType} /> </div>
               })}
           </div>
         </div>

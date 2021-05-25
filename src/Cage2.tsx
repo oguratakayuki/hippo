@@ -3,10 +3,11 @@ import './App.css';
 import Animal from './Animal';
 import type { AnimalInfo } from './types/AnimalInfo';
 
-type MyProps = {
+type CageProps = {
   // using `interface` is also ok
   id: number;
   name: string;
+  animalType: string;
 };
 
 
@@ -14,23 +15,26 @@ type CageState = {
   id: number;
   animals: AnimalInfo[];
   currentAnimalId: number;
+  animalType: string;
 };
 
-export default class Cage2 extends React.Component<MyProps, CageState> {
-  constructor(props: MyProps) {
+export default class Cage2 extends React.Component<CageProps, CageState> {
+  constructor(props: CageProps) {
     super(props);
     this.onClick = this.onClick.bind(this)
     this.state = {
       id: props.id,
       animals: [],
       currentAnimalId: 1,
+      animalType: props.animalType,
     };
   }
   generateAnimal(){
-    return {id: this.state.currentAnimalId, name: 'hoge', hp: 777}
+    return {id: this.state.currentAnimalId, name: 'hoge', hp: 777, animalType: this.state.animalType}
   }
   onClick(){
     this.setState((state) => ({
+      id: state.id,
       animals: [...state.animals, this.generateAnimal()],
       currentAnimalId: state.currentAnimalId + 1,
     }));
