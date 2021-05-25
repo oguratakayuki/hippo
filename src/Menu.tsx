@@ -1,4 +1,11 @@
 import React from 'react';
+import constJson from "./settings/const.json";
+
+interface AnimalTypeInterface {
+    [key: string]: string;
+}
+const animalType: AnimalTypeInterface = constJson.animalType;
+
 
 type MenuState = {
   mode: string;
@@ -34,13 +41,13 @@ export default class Menu extends React.Component<MenuProps, MenuState> {
           <div className="container">
             <div className="row">
                 <div className="col-sm-4">
-                  <button type="submit" className="btn btn-success" onClick={this.cageType}>おり</button>
+                  <button className="pushable" onClick={this.cageType}> <span className="front"> おり </span> </button>
                 </div>
                 <div className="col-sm-4">
-                  <button type="submit" className="btn btn-primary">Hippo</button>
+                  <button className="pushable"> <span className="front"> hippo </span> </button>
                 </div>
                 <div className="col-sm-4">
-                  <button type="submit" className="btn btn-primary">飼育員</button>
+                  <button className="pushable"> <span className="front">飼育員</span> </button>
                 </div>
             </div>
           </div>
@@ -51,12 +58,17 @@ export default class Menu extends React.Component<MenuProps, MenuState> {
         <React.Fragment>
           <div className="container">
             <div className="row">
-                <div className="col-sm-6">
-                  <input type="number" className="form-control"  id="actionValue" />
-                </div>
-                <div className="col-sm-6">
-                  <button type="submit" className="btn btn-primary" onClick={this.onClick}>add cage</button>
-                </div>
+              <div className="col-sm-6">
+                <select className="form-select option1" aria-label="Default select example" id="actionType1" >
+                  <option value="DEFAULT" disabled>Open this select menu</option>
+                  {Object.keys(animalType).map(key =>
+                    <option value={key}>{animalType[key]}</option>
+                  )}
+                </select>
+              </div>
+              <div className="col-sm-6">
+                <button type="submit" className="pushable" onClick={this.onClick}> <span className="front">追加</span> </button>
+              </div>
             </div>
           </div>
         </React.Fragment>

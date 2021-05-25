@@ -9,6 +9,9 @@
     "vegetable": "お野菜",
     "breedingCommittee": "飼育員",
     "visitors": "来場者"
+  },
+  "animalType": {
+    "hippo":   "カバ",
+    "lion":   "ライオン"
   }
-
 }
