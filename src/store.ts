@@ -3,12 +3,12 @@ import { configureStore } from '@reduxjs/toolkit';
 
 import { counterSlice, CounterState } from './modules/counter';
 import { logSlice, LogState } from './modules/log';
-import { hippoSlice, hippoState } from './modules/HippoState';
+import { hippoSlice, stateList } from './modules/HippoState';
 
 export type AppState = {
   counter: CounterState;
   log: LogState;
-  hippo: hippoState;
+  hippo: stateList;
 };
 
 const rootReducer = combineReducers<AppState>({

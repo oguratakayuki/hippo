@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import {Hippo} from './Hippo';
+import Zoo from './Zoo';
 import reportWebVitals from './reportWebVitals';
 import { Provider } from 'react-redux'
 import store from './store'
@@ -9,7 +9,9 @@ import store from './store'
 ReactDOM.render(
   <React.StrictMode>
     <Provider store={store}>
-      <Hippo name='hoge' age={10} />
+    <div className="wrapper">
+      <Zoo />
+    </div>
     </Provider>
   </React.StrictMode>,
   document.getElementById('root')

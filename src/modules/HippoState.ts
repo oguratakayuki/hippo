@@ -1,22 +1,25 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
 type Feed = {
+  id: number;
   food: string;
   quantity: number;
 };
 
-export type hippoState = {
+type hippoState = {
   height: number;
   hp: number;
   intelligence: number;
   strength: number;
+}
+
+export type stateList = {
+  hippos: hippoState[];
 };
 
-const initialState: hippoState = {
-  height: 1,
-  hp: 1,
-  intelligence: 1,
-  strength: 1,
+
+const initialState: stateList = {
+  hippos: [],
 };
 
 export const hippoSlice = createSlice({
@@ -24,17 +27,20 @@ export const hippoSlice = createSlice({
   initialState,
   reducers: {
     feed: (state, action: PayloadAction<Feed>) => {
-      let height: number = state.height;
-      let hp: number = state.hp;
-      height = height * 10;
+      let newHippos: hippoState[] = { ...state.hippos};
+      if(typeof newHippos[action.payload.id] === 'undefined') {
+        newHippos[action.payload.id] = { height: 1, hp: 2, intelligence: 2, strength: 2 }
+      } else {
+        let height: number = newHippos[action.payload.id].height;
+        let hp: number = newHippos[action.payload.id].hp;
+        newHippos[action.payload.id] = { height: 1, hp: 2, intelligence: 2, strength: 999 }
+      }
       if (action.payload.food == "meat") {
         console.log("is meat");
-        hp = hp * 20;
       }
       return {
         ...state,
-        height: height,
-        hp: hp
+        hippos: newHippos 
       };
     },
     walk: (state, action: PayloadAction<Feed>) => {

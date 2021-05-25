@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import { counterSlice } from './modules/counter';
 import { logSlice, LogState } from './modules/log';
-import { hippoSlice, hippoState } from './modules/HippoState';
+import { hippoSlice } from './modules/HippoState';
 import { AppState } from './store';
 import constJson from "./settings/const.json";
 
@@ -17,16 +17,18 @@ interface FoodTypeInterface {
 }
 const foodType: FoodTypeInterface = constJson.foodType;
 
+export type ActionProps = {
+  id: number;
+}
 
-
-export default function Action() {
-  const { count, log, hippo } = useSelector<
+export default function Action(props: ActionProps) {
+  const { id } = props;
+  const { count, log  } = useSelector<
     AppState,
-    { count: number; log: LogState, hippo: hippoState }
+    { count: number; log: LogState  }
   >((state) => ({
     count: state.counter.count,
     log: state.log,
-    hippo: state.hippo,
   }));
   const dispatch = useDispatch();
   const { incrementCount, decrementCount } = counterSlice.actions;
@@ -62,7 +64,7 @@ export default function Action() {
     console.log(actionType2);
     console.log(actionValue);
     if (actionType1 == "feed") {
-      dispatch(feed({ food: actionType2, quantity: actionValue }));
+      dispatch(feed({ id: id, food: actionType2, quantity: actionValue }));
     }
 
 
