@@ -47,7 +47,7 @@ export default class Cage2 extends React.Component<CageProps, CageState> {
           <div className="container">
             <div className="row">
               {this.state.animals.map(function(object, i){
-                 return <div className="col-sm-6"><Animal {...object} /></div>
+                 return <div className="col-sm-6" key={object.id}><Animal {...object} /></div>
               })}
             </div>
           </div>

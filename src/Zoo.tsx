@@ -55,14 +55,14 @@ export default class Zoo extends React.Component<{}, Cages> {
                 <div className="row">
                   
                     {this.state.cages.map(function(cage, i){
-                      return <div className="col-sm-6"><Cage2 id={cage.id} name='hippos cage' animalType={cage.animalType} /> </div>
+                      return <div className="col-sm-6" key={cage.id}><Cage2 id={cage.id} name='hippos cage' animalType={cage.animalType} /> </div>
                     })}
                 </div>
               </div>
             </div>
             <div className="col-sm-2">
               {this.state.infos.map(function(info, i){
-                return <div className="card info-card"><div className="card-body">{info.message}</div></div>
+                return <div className="card info-card" key={i}><div className="card-body">{info.message}</div></div>
               })}
             </div>
           </div>

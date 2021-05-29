@@ -13,11 +13,13 @@
     "@types/react-dom": "^17.0.3",
     "@types/react-redux": "^7.1.16",
     "dotenv": "^8.2.0",
+    "prettier": "^2.3.0",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-redux": "^7.2.4",
     "react-scripts": "4.0.3",
     "typescript": "^4.2.4",
+    "typescript-eslint": "0.0.1-alpha.0",
     "web-vitals": "^1.1.1"
   },
   "scripts": {
@@ -43,5 +45,14 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "@typescript-eslint/eslint-plugin": "^4.25.0",
+    "@typescript-eslint/parser": "^4.25.0",
+    "eslint": "^7.27.0",
+    "eslint-config-airbnb": "^18.2.1",
+    "eslint-plugin-import": "^2.23.3",
+    "eslint-plugin-jsx-a11y": "^6.4.1",
+    "eslint-plugin-react": "^7.23.2"
   }
 }

@@ -62,7 +62,7 @@ export default class Menu extends React.Component<MenuProps, MenuState> {
                 <select className="form-select option1" aria-label="Default select example" id="animalType" >
                   <option value="DEFAULT" disabled>Open this select menu</option>
                   {Object.keys(animalType).map(key =>
-                    <option value={key}>{animalType[key]}</option>
+                    <option value={key} key={key}>{animalType[key]}</option>
                   )}
                 </select>
               </div>

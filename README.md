@@ -1,3 +1,6 @@
+# MEMO
+npx eslint src/Cage2.tsx
+
 # Todo
 1. サーバサイドへの同期
 2. dotenv導入
