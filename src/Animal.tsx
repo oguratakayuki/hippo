@@ -1,5 +1,5 @@
 import React from 'react';
-import type { AnimalInfo } from './types/AnimalInfo';
+import type { AnimalInfo } from './types/animalInfo';
 
 
 

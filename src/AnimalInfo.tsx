@@ -1,8 +1,8 @@
 import React from 'react';
-import {HippoProps} from './Hippo';
+import {HippoProps} from './hippo';
 
 import { useDispatch, useSelector } from 'react-redux';
-import { hippoSlice, stateList } from './modules/HippoState';
+import { hippoSlice, stateList } from './modules/hippoState';
 import { AppState } from './store';
 
 export default function AnimalInfo(props: HippoProps) {

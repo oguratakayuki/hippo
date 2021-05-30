@@ -1,6 +1,6 @@
 import React from 'react';
 import constJson from "./settings/const.json";
-import { AnimalTypeInterface } from './types/AnimalTypeInterface';
+import { AnimalTypeInterface } from './types/animalTypeInterface';
 const animalType: AnimalTypeInterface = constJson.animalType;
 
 

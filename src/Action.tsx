@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import { counterSlice } from './modules/counter';
 import { logSlice, LogState } from './modules/log';
-import { hippoSlice } from './modules/HippoState';
+import { hippoSlice } from './modules/hippoState';
 import { AppState } from './store';
 import constJson from "./settings/const.json";
 
@@ -78,7 +78,7 @@ export default function Action(props: ActionProps) {
             <select className="form-select option1" aria-label="Default select example" id="actionType1" onChange={(event) => { actionTypeChange(event) }} >
               <option value="DEFAULT" disabled>Open this select menu</option>
               {Object.keys(breedingType).map(key =>
-                <option value={key}>{breedingType[key]}</option>
+                <option value={key} key={key}>{breedingType[key]}</option>
               )}
             </select>
           </div>
@@ -86,7 +86,7 @@ export default function Action(props: ActionProps) {
             <select className="form-select option2" aria-label="Default select example"  id="actionType2">
               <option value="DEFAULT" disabled>何を食べさせる?</option>
               {Object.keys(foodType).map(key =>
-                <option value={key}>{foodType[key]}</option>
+                <option value={key} key={key}>{foodType[key]}</option>
               )}
             </select>
           </div>

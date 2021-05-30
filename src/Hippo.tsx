@@ -1,8 +1,8 @@
 import React from 'react';
 import './App.css';
-import Cage from './Cage';
-import AnimalInfo from './AnimalInfo';
-import Action from './Action';
+import Cage from './cage';
+import AnimalInfo from './animalInfo';
+import Action from './action';
 
 export type HippoProps = {
   id: number;

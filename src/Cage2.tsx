@@ -1,7 +1,7 @@
 import React from 'react';
 import './App.css';
-import Animal from './Animal';
-import type { AnimalInfo } from './types/AnimalInfo';
+import Animal from './animal';
+import type { AnimalInfo } from './types/animalInfo';
 
 type CageProps = {
   // using `interface` is also ok

@@ -1,10 +1,10 @@
 import React from 'react';
 import './App.css';
-import Cage2 from './Cage2';
-import Menu from './Menu';
+import Cage2 from './cage2';
+import Menu from './menu';
 
 import constJson from "./settings/const.json";
-import { AnimalTypeInterface } from './types/AnimalTypeInterface';
+import { AnimalTypeInterface } from './types/animalTypeInterface';
 const animalTypes: AnimalTypeInterface = constJson.animalType;
 
 
