@@ -1,4 +1,4 @@
-import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 type Log = {
   id: number;
@@ -16,7 +16,7 @@ const initialState: LogState = {
 };
 
 export const logSlice = createSlice({
-  name: 'log',
+  name: "log",
   initialState,
   reducers: {
     addLog: (state, action: PayloadAction<Log>) => {
@@ -26,7 +26,7 @@ export const logSlice = createSlice({
         loading: false,
       };
     },
-    deleteLog: (state, action: PayloadAction<Pick<Log, 'id'>>) => {
+    deleteLog: (state, action: PayloadAction<Pick<Log, "id">>) => {
       return {
         ...state,
         logs: state.logs.filter((log) => log.id !== action.payload.id),

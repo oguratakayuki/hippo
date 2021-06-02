@@ -1,5 +1,6 @@
 # MEMO
-npx eslint src/Cage2.tsx
+`npx eslint src/Cage2.tsa`x
+`npx prettier '**/*.{js,ts,tsx}' --write`
 
 # Todo
 1. サーバサイドへの同期

@@ -1,7 +1,7 @@
-import React from 'react';
-import './App.css';
-import Animal from './animal';
-import type { AnimalInfo } from './types/animalInfo';
+import React from "react";
+import "./App.css";
+import Animal from "./animal";
+import type { AnimalInfo } from "./types/animalInfo";
 
 type CageProps = {
   // using `interface` is also ok
@@ -9,7 +9,6 @@ type CageProps = {
   name: string;
   animalType: string;
 };
-
 
 type CageState = {
   id: number;
@@ -21,7 +20,7 @@ type CageState = {
 export default class Cage2 extends React.Component<CageProps, CageState> {
   constructor(props: CageProps) {
     super(props);
-    this.onClick = this.onClick.bind(this)
+    this.onClick = this.onClick.bind(this);
     this.state = {
       id: props.id,
       animals: [],
@@ -29,10 +28,15 @@ export default class Cage2 extends React.Component<CageProps, CageState> {
       animalType: props.animalType,
     };
   }
-  generateAnimal(){
-    return {id: this.state.currentAnimalId, name: 'hoge', hp: 777, animalType: this.state.animalType}
+  generateAnimal() {
+    return {
+      id: this.state.currentAnimalId,
+      name: "hoge",
+      hp: 777,
+      animalType: this.state.animalType,
+    };
   }
-  onClick(){
+  onClick() {
     this.setState((state) => ({
       id: state.id,
       animals: [...state.animals, this.generateAnimal()],
@@ -46,13 +50,23 @@ export default class Cage2 extends React.Component<CageProps, CageState> {
         <div className="cage">
           <div className="container">
             <div className="row">
-              {this.state.animals.map(function(object, i){
-                 return <div className="col-sm-6" key={object.id}><Animal {...object} /></div>
+              {this.state.animals.map(function (object, i) {
+                return (
+                  <div className="col-sm-6" key={object.id}>
+                    <Animal {...object} />
+                  </div>
+                );
               })}
             </div>
           </div>
         </div>
-        <button type="submit" className="btn btn-primary" onClick={this.onClick}>カバ</button>
+        <button
+          type="submit"
+          className="btn btn-primary"
+          onClick={this.onClick}
+        >
+          カバ
+        </button>
       </React.Fragment>
     );
   }

@@ -1,9 +1,9 @@
-import React, { FC } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import React, { FC } from "react";
+import { useDispatch, useSelector } from "react-redux";
 
-import { counterSlice } from '../modules/counter';
-import { logSlice, LogState } from '../modules/log';
-import { AppState } from '../store';
+import { counterSlice } from "../modules/counter";
+import { logSlice, LogState } from "../modules/log";
+import { AppState } from "../store";
 
 type Props = {
   samplePropData?: string;
@@ -22,7 +22,7 @@ const Sample: FC<Props> = ({ samplePropData }) => {
   const { addLog, deleteLog, setLogLoading } = logSlice.actions;
 
   return (
-    <div style={{ padding: '12px', backgroundColor: '#eee' }}>
+    <div style={{ padding: "12px", backgroundColor: "#eee" }}>
       <h1>Sample Component</h1>
       <p>samplePropData: {samplePropData}</p>
       <h2>Counter State</h2>
@@ -38,7 +38,7 @@ const Sample: FC<Props> = ({ samplePropData }) => {
       <p>log.loading: {log.loading.toString()}</p>
       <button
         type="button"
-        onClick={() => dispatch(addLog({ id: 1, text: 'xxx' }))}
+        onClick={() => dispatch(addLog({ id: 1, text: "xxx" }))}
       >
         addLog
       </button>

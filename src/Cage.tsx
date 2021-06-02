@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 
 export default function Cage(props: any) {
   return (
@@ -7,12 +7,11 @@ export default function Cage(props: any) {
         <div className="container">
           <div className="row">
             <div className="col-sm-3">
-              <img className="svg-class" src="hippo.svg" alt="hippo" / >
+              <img className="svg-class" src="hippo.svg" alt="hippo" />
             </div>
+            <div className="col-sm-3"></div>
             <div className="col-sm-3">
-            </div>
-            <div className="col-sm-3">
-              <img className="svg-class" src="hippo.svg" alt="hippo" / >
+              <img className="svg-class" src="hippo.svg" alt="hippo" />
             </div>
           </div>
         </div>

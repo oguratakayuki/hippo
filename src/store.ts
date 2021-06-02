@@ -1,9 +1,9 @@
-import { combineReducers } from 'redux';
-import { configureStore } from '@reduxjs/toolkit';
+import { combineReducers } from "redux";
+import { configureStore } from "@reduxjs/toolkit";
 
-import { counterSlice, CounterState } from './modules/counter';
-import { logSlice, LogState } from './modules/log';
-import { hippoSlice, stateList } from './modules/hippoState';
+import { counterSlice, CounterState } from "./modules/counter";
+import { logSlice, LogState } from "./modules/log";
+import { hippoSlice, stateList } from "./modules/hippoState";
 
 export type AppState = {
   counter: CounterState;

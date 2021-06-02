@@ -1,13 +1,11 @@
-import React from 'react';
-import './App.css';
-import Cage2 from './cage2';
-import Menu from './menu';
+import React from "react";
+import "./App.css";
+import Cage2 from "./cage2";
+import Menu from "./menu";
 
 import constJson from "./settings/const.json";
-import { AnimalTypeInterface } from './types/animalTypeInterface';
+import { AnimalTypeInterface } from "./types/animalTypeInterface";
 const animalTypes: AnimalTypeInterface = constJson.animalType;
-
-
 
 type CageInfo = {
   id: number;
@@ -25,24 +23,25 @@ type Cages = {
 export default class Zoo extends React.Component<{}, Cages> {
   constructor(props: {}) {
     super(props);
-    this.addAnimalCage = this.addAnimalCage.bind(this)
-    this.state =  { cages: [], infos: [] }
-
+    this.addAnimalCage = this.addAnimalCage.bind(this);
+    this.state = { cages: [], infos: [] };
   }
-  addAnimalCage(animalType: string){
-    let currentCageId: number; 
+  addAnimalCage(animalType: string) {
+    let currentCageId: number;
     if (this.state.cages.length > 0) {
-      currentCageId = this.state.cages[this.state.cages.length - 1].id
+      currentCageId = this.state.cages[this.state.cages.length - 1].id;
     } else {
-      currentCageId = 0
+      currentCageId = 0;
     }
-    const message: string = animalTypes[animalType] + 'を追加しました';
+    const message: string = animalTypes[animalType] + "を追加しました";
     this.setState((state) => ({
-      cages: [...this.state.cages, {id: currentCageId + 1 , animalType: animalType}],
-      infos: [...this.state.infos, {message: message}]
+      cages: [
+        ...this.state.cages,
+        { id: currentCageId + 1, animalType: animalType },
+      ],
+      infos: [...this.state.infos, { message: message }],
     }));
   }
-
 
   render() {
     return (
@@ -53,21 +52,31 @@ export default class Zoo extends React.Component<{}, Cages> {
             <div className="col-sm-10">
               <div className="container">
                 <div className="row">
-                  
-                    {this.state.cages.map(function(cage, i){
-                      return <div className="col-sm-6" key={cage.id}><Cage2 id={cage.id} name='hippos cage' animalType={cage.animalType} /> </div>
-                    })}
+                  {this.state.cages.map(function (cage, i) {
+                    return (
+                      <div className="col-sm-6" key={cage.id}>
+                        <Cage2
+                          id={cage.id}
+                          name="hippos cage"
+                          animalType={cage.animalType}
+                        />{" "}
+                      </div>
+                    );
+                  })}
                 </div>
               </div>
             </div>
             <div className="col-sm-2">
-              {this.state.infos.map(function(info, i){
-                return <div className="card info-card" key={i}><div className="card-body">{info.message}</div></div>
+              {this.state.infos.map(function (info, i) {
+                return (
+                  <div className="card info-card" key={i}>
+                    <div className="card-body">{info.message}</div>
+                  </div>
+                );
               })}
             </div>
           </div>
         </div>
-
 
         <br />
       </React.Fragment>
