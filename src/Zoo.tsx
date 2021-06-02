@@ -2,6 +2,8 @@ import React from "react";
 import "./App.css";
 import Cage2 from "./cage2";
 import Menu from "./menu";
+import InternalClock from "./internalClock";
+import InternalClock2 from "./internalClock2";
 
 import constJson from "./settings/const.json";
 import { AnimalTypeInterface } from "./types/animalTypeInterface";
@@ -48,6 +50,9 @@ export default class Zoo extends React.Component<{}, Cages> {
       <React.Fragment>
         <Menu addCageAction={this.addAnimalCage} />
         <div className="container">
+          <div className="row">
+            <InternalClock2 date={new Date}/>
+          </div>
           <div className="row">
             <div className="col-sm-10">
               <div className="container">

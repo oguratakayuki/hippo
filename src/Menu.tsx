@@ -31,6 +31,12 @@ export default class Menu extends React.Component<MenuProps, MenuState> {
       );
       this.props.addCageAction(animalType);
 
+      const cageName = document.getElementById(
+        "cageName"
+      ) as HTMLInputElement;
+      console.log(cageName.value);
+
+
       this.setState(() => ({ mode: "initial" }));
     }
   }
@@ -41,19 +47,19 @@ export default class Menu extends React.Component<MenuProps, MenuState> {
         <React.Fragment>
           <div className="container">
             <div className="row">
-              <div className="col-sm-4">
+              <div className="col-md-4">
                 <button className="pushable" onClick={this.cageType}>
                   {" "}
                   <span className="front"> おり </span>{" "}
                 </button>
               </div>
-              <div className="col-sm-4">
+              <div className="col-md-4">
                 <button className="pushable">
                   {" "}
                   <span className="front"> hippo </span>{" "}
                 </button>
               </div>
-              <div className="col-sm-4">
+              <div className="col-md-4">
                 <button className="pushable">
                   {" "}
                   <span className="front">飼育員</span>{" "}
@@ -68,9 +74,9 @@ export default class Menu extends React.Component<MenuProps, MenuState> {
         <React.Fragment>
           <div className="container">
             <div className="row">
-              <div className="col-sm-6">
+              <div className="col-md-4">
                 <select
-                  className="form-select option1"
+                  className="form-control form-select option1"
                   aria-label="Default select example"
                   id="animalType"
                 >
@@ -84,7 +90,10 @@ export default class Menu extends React.Component<MenuProps, MenuState> {
                   ))}
                 </select>
               </div>
-              <div className="col-sm-6">
+              <div className="col-md-4">
+                <input type="text" className="form-control" id="cageName" placeholder="おりの名前" aria-label="Username" />
+              </div>
+              <div className="col-md-4">
                 <button
                   type="submit"
                   className="pushable"

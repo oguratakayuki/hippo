@@ -2,6 +2,7 @@ import React from "react";
 import "./App.css";
 import Animal from "./animal";
 import type { AnimalInfo } from "./types/animalInfo";
+import { between } from "./util";
 
 type CageProps = {
   // using `interface` is also ok
@@ -31,9 +32,14 @@ export default class Cage2 extends React.Component<CageProps, CageState> {
   generateAnimal() {
     return {
       id: this.state.currentAnimalId,
-      name: "hoge",
-      hp: 777,
       animalType: this.state.animalType,
+      name: "hoge",
+      hp: between(60, 80),
+      satiation: 100,
+      intelligence: between(60, 80),
+      power: between(60, 80),
+      age: between(0, 30),
+      created: new Date,
     };
   }
   onClick() {
