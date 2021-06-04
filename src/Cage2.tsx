@@ -19,6 +19,7 @@ type CageState = {
 };
 
 export default class Cage2 extends React.Component<CageProps, CageState> {
+  private childRefs: React.RefObject<Animal>[];
   constructor(props: CageProps) {
     super(props);
     this.onClick = this.onClick.bind(this);
@@ -28,6 +29,8 @@ export default class Cage2 extends React.Component<CageProps, CageState> {
       currentAnimalId: 1,
       animalType: props.animalType,
     };
+    this.childRefs = [];
+
   }
   generateAnimal() {
     return {
@@ -48,6 +51,19 @@ export default class Cage2 extends React.Component<CageProps, CageState> {
       animals: [...state.animals, this.generateAnimal()],
       currentAnimalId: state.currentAnimalId + 1,
     }));
+    this.getCageInfo();
+  }
+
+  componentDidMount() {
+  }
+
+  getCageInfo() {
+    let animalInfo = this.childRefs.map((childRef) => {
+      if (childRef && childRef.current) {
+        return childRef.current.getAnimalInfo();
+      }
+    });
+    return animalInfo.filter(Boolean);
   }
 
   render() {
@@ -56,10 +72,12 @@ export default class Cage2 extends React.Component<CageProps, CageState> {
         <div className="cage">
           <div className="container">
             <div className="row">
-              {this.state.animals.map(function (object, i) {
+              {this.state.animals.map( (object, i) => {
+                const ref: React.RefObject<Animal> = React.createRef();
+                this.childRefs.push(ref);
                 return (
-                  <div className="col-sm-6" key={object.id}>
-                    <Animal {...object} />
+                  <div className="col-sm-6" key={object.id} >
+                    <Animal {...object} ref={ref} />
                   </div>
                 );
               })}
@@ -71,7 +89,7 @@ export default class Cage2 extends React.Component<CageProps, CageState> {
           className="btn btn-primary"
           onClick={this.onClick}
         >
-          カバ
+          追加
         </button>
       </React.Fragment>
     );

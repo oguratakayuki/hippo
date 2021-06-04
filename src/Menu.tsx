@@ -34,9 +34,6 @@ export default class Menu extends React.Component<MenuProps, MenuState> {
       const cageName = document.getElementById(
         "cageName"
       ) as HTMLInputElement;
-      console.log(cageName.value);
-
-
       this.setState(() => ({ mode: "initial" }));
     }
   }

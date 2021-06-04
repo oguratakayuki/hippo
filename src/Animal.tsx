@@ -19,6 +19,12 @@ export default class Animal extends React.Component<AnimalInfo, AnimalInfo> {
     };
     this.timer = 0;
   }
+  getAnimalInfo() {
+    return {
+      id: this.state.id,
+      satiation: this.state.satiation,
+    };
+  }
 
   componentDidMount() {
     this.timer = window.setInterval( () => this.tick(), 1000);
@@ -50,7 +56,6 @@ export default class Animal extends React.Component<AnimalInfo, AnimalInfo> {
 
   render() {
     const imageSrc = this.state.status + '-' + this.state.animalType + ".png";
-    console.log(imageSrc);
     return (
       <React.Fragment>
         <img className="svg-class" src={imageSrc} alt="hippo" />

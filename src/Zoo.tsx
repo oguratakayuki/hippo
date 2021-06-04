@@ -23,10 +23,13 @@ type Cages = {
 };
 
 export default class Zoo extends React.Component<{}, Cages> {
+  private childRefs: React.RefObject<Cage2>[];
   constructor(props: {}) {
     super(props);
     this.addAnimalCage = this.addAnimalCage.bind(this);
     this.state = { cages: [], infos: [] };
+    this.childRefs = [];
+    this.getZooInfo = this.getZooInfo.bind(this);
   }
   addAnimalCage(animalType: string) {
     let currentCageId: number;
@@ -45,10 +48,20 @@ export default class Zoo extends React.Component<{}, Cages> {
     }));
   }
 
+  getZooInfo() {
+    let cageInfo = this.childRefs.map((childRef) => {
+      if (childRef && childRef.current) {
+        return childRef.current.getCageInfo();
+      }
+    });
+    console.log(cageInfo.filter(Boolean));
+  }
+
   render() {
     return (
       <React.Fragment>
         <Menu addCageAction={this.addAnimalCage} />
+        <button onClick={() => this.getZooInfo()}>CageInfo </button>
         <div className="container">
           <div className="row">
             <InternalClock2 date={new Date}/>
@@ -57,13 +70,16 @@ export default class Zoo extends React.Component<{}, Cages> {
             <div className="col-sm-10">
               <div className="container">
                 <div className="row">
-                  {this.state.cages.map(function (cage, i) {
+                  {this.state.cages.map( (cage, i) => {
+                    const ref: React.RefObject<Cage2> = React.createRef();
+                    this.childRefs.push(ref);
                     return (
                       <div className="col-sm-6" key={cage.id}>
                         <Cage2
                           id={cage.id}
                           name="hippos cage"
                           animalType={cage.animalType}
+                          ref={ref}
                         />{" "}
                       </div>
                     );
