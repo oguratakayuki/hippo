@@ -15,11 +15,12 @@ export default class Menu extends React.Component<MenuProps, MenuState> {
   constructor(props: MenuProps) {
     super(props);
     this.state = { mode: "initial" };
-    this.cageType = this.cageType.bind(this);
+    this.changeMode = this.changeMode.bind(this);
     this.onClick = this.onClick.bind(this);
   }
-  cageType() {
-    this.setState(() => ({ mode: "cage" }));
+  changeMode(mode: string) {
+    console.log(mode);
+    this.setState(() => ({ mode: mode }));
   }
   onClick(e: React.MouseEvent<HTMLButtonElement, MouseEvent>) {
     if (this.props.addCageAction) {
@@ -45,7 +46,7 @@ export default class Menu extends React.Component<MenuProps, MenuState> {
           <div className="container">
             <div className="row">
               <div className="col-md-4">
-                <button className="pushable" onClick={this.cageType}>
+                <button className="pushable" onClick={()=>this.changeMode('cage')}>
                   {" "}
                   <span className="front"> おり </span>{" "}
                 </button>
@@ -57,7 +58,7 @@ export default class Menu extends React.Component<MenuProps, MenuState> {
                 </button>
               </div>
               <div className="col-md-4">
-                <button className="pushable">
+                <button className="pushable" onClick={()=>this.changeMode('breeder')}>
                   {" "}
                   <span className="front">飼育員</span>{" "}
                 </button>
@@ -104,6 +105,73 @@ export default class Menu extends React.Component<MenuProps, MenuState> {
           </div>
         </React.Fragment>
       );
+    } else if (this.state.mode == "breeder") {
+      return (
+        <React.Fragment>
+          <div className="container">
+            <div className="alert alert-primary" role="alert">三人からの応募がありました</div>
+
+            <div className="row">
+              <div className="col-md-4">
+                <div className="card" style={{borderColor: 'purple'}}>
+                  <div className="card-header"> 飼育員A </div>
+                  <ul className="list-group list-group-flush">
+                    <li className="list-group-item">時給 1000円</li>
+                    <li className="list-group-item">餌やり時追加スキル 調教</li>
+                    <li className="list-group-item">餌やりコスト 2.5</li>
+                    <li className="list-group-item">清掃コスト 2.3</li>
+                    <li className="list-group-item">ルーティンタイプ random</li>
+                    <li className="list-group-item">適性　カバ+2, ライオン-1</li>
+                  </ul>
+                  <div className="card-body">
+                    <a href="#" className="btn btn-primary">採用する</a>
+                  </div>
+                </div>
+              </div>
+
+              <div className="col-md-4">
+                <div className="card" style={{borderColor: 'purple'}}>
+                  <div className="card-header"> 飼育員B </div>
+                  <ul className="list-group list-group-flush">
+                    <li className="list-group-item">時給 1200円</li>
+                    <li className="list-group-item">餌やり時追加スキル 散歩</li>
+                    <li className="list-group-item">餌やりコスト 2.3</li>
+                    <li className="list-group-item">清掃コスト 2.1</li>
+                    <li className="list-group-item">ルーティンタイプ 空腹度重視</li>
+                    <li className="list-group-item">適性　カバ-2, ライオン-3</li>
+                  </ul>
+                  <div className="card-body">
+                    <a href="#" className="btn btn-primary">採用する</a>
+                  </div>
+                </div>
+              </div>
+
+              <div className="col-md-4">
+                <div className="card" style={{borderColor: 'purple'}}>
+                  <div className="card-header"> 飼育員B </div>
+                  <ul className="list-group list-group-flush">
+                    <li className="list-group-item">時給 2200円</li>
+                    <li className="list-group-item">餌やり時追加スキル 治療</li>
+                    <li className="list-group-item">餌やりコスト 2.5</li>
+                    <li className="list-group-item">清掃コスト 3.1</li>
+                    <li className="list-group-item">ルーティンタイプ 清掃重視</li>
+                    <li className="list-group-item">適性　なし</li>
+                  </ul>
+                  <div className="card-body">
+                    <a href="#" className="btn btn-primary">採用する</a>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </React.Fragment>
+      );
     }
+
+
+
+
+
   }
 }

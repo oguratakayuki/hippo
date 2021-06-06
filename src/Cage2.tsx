@@ -18,6 +18,18 @@ type CageState = {
   animalType: string;
 };
 
+export type AnimalSummaryType = {
+  id: number;
+  satiation: number;
+}
+
+export type CageSummaryType = {
+  id: number;
+  animalType: string;
+  animalSummary: AnimalSummaryType[];
+}
+
+
 export default class Cage2 extends React.Component<CageProps, CageState> {
   private childRefs: React.RefObject<Animal>[];
   constructor(props: CageProps) {
@@ -51,19 +63,29 @@ export default class Cage2 extends React.Component<CageProps, CageState> {
       animals: [...state.animals, this.generateAnimal()],
       currentAnimalId: state.currentAnimalId + 1,
     }));
-    this.getCageInfo();
   }
 
   componentDidMount() {
   }
 
-  getCageInfo() {
-    let animalInfo = this.childRefs.map((childRef) => {
-      if (childRef && childRef.current) {
-        return childRef.current.getAnimalInfo();
-      }
-    });
-    return animalInfo.filter(Boolean);
+  getCageInfo(): CageSummaryType {
+    let cageSummary: CageSummaryType = {
+      id: this.state.id,
+      animalType: this.state.animalType,
+      animalSummary: []
+    }
+    if (this.childRefs.length) {
+      cageSummary.animalSummary = this.childRefs.filter( (childRef) => {
+        return  childRef.current;
+      }).map((childRef) => {
+        if (childRef.current) {
+          return childRef.current.getAnimalInfo();
+        } else {
+          return {} as AnimalSummaryType;
+        }
+      }).filter(Boolean);
+    }
+    return cageSummary;
   }
 
   render() {
