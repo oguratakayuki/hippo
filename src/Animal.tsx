@@ -15,7 +15,7 @@ export default class Animal extends React.Component<AnimalInfo, AnimalInfo> {
       power: props.power,
       age: props.age,
       created: props.created,
-      status: 'normal',
+      status: "normal",
     };
     this.timer = 0;
   }
@@ -27,7 +27,7 @@ export default class Animal extends React.Component<AnimalInfo, AnimalInfo> {
   }
 
   componentDidMount() {
-    this.timer = window.setInterval( () => this.tick(), 1000);
+    this.timer = window.setInterval(() => this.tick(), 1000);
   }
 
   componentWillUnmount() {
@@ -36,26 +36,26 @@ export default class Animal extends React.Component<AnimalInfo, AnimalInfo> {
 
   tick() {
     this.setState({
-      satiation: this.state.satiation - 4
+      satiation: this.state.satiation - 4,
     });
     this.reflectStatus();
   }
   reflectStatus() {
-    if (this.state.satiation < - 300) {
+    if (this.state.satiation < -300) {
       this.setState({ status: "dead" });
-    } else if (this.state.satiation < - 200) {
-    } else if (this.state.satiation < - 100) {
+    } else if (this.state.satiation < -200) {
+    } else if (this.state.satiation < -100) {
     } else if (this.state.satiation < 0) {
       this.setState({ status: "angry" });
     } else {
-      if ( this.state.status != "normal") {
+      if (this.state.status != "normal") {
         this.setState({ status: "normal" });
       }
     }
   }
 
   render() {
-    const imageSrc = this.state.status + '-' + this.state.animalType + ".png";
+    const imageSrc = this.state.status + "-" + this.state.animalType + ".png";
     return (
       <React.Fragment>
         <img className="svg-class" src={imageSrc} alt="hippo" />

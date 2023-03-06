@@ -21,14 +21,13 @@ type CageState = {
 export type AnimalSummaryType = {
   id: number;
   satiation: number;
-}
+};
 
 export type CageSummaryType = {
   id: number;
   animalType: string;
   animalSummary: AnimalSummaryType[];
-}
-
+};
 
 export default class Cage2 extends React.Component<CageProps, CageState> {
   private childRefs: React.RefObject<Animal>[];
@@ -42,7 +41,6 @@ export default class Cage2 extends React.Component<CageProps, CageState> {
       animalType: props.animalType,
     };
     this.childRefs = [];
-
   }
   generateAnimal() {
     return {
@@ -54,7 +52,7 @@ export default class Cage2 extends React.Component<CageProps, CageState> {
       intelligence: between(60, 80),
       power: between(60, 80),
       age: between(0, 30),
-      created: new Date,
+      created: new Date(),
     };
   }
   onClick() {
@@ -65,25 +63,27 @@ export default class Cage2 extends React.Component<CageProps, CageState> {
     }));
   }
 
-  componentDidMount() {
-  }
+  componentDidMount() {}
 
   getCageInfo(): CageSummaryType {
     let cageSummary: CageSummaryType = {
       id: this.state.id,
       animalType: this.state.animalType,
-      animalSummary: []
-    }
+      animalSummary: [],
+    };
     if (this.childRefs.length) {
-      cageSummary.animalSummary = this.childRefs.filter( (childRef) => {
-        return  childRef.current;
-      }).map((childRef) => {
-        if (childRef.current) {
-          return childRef.current.getAnimalInfo();
-        } else {
-          return {} as AnimalSummaryType;
-        }
-      }).filter(Boolean);
+      cageSummary.animalSummary = this.childRefs
+        .filter((childRef) => {
+          return childRef.current;
+        })
+        .map((childRef) => {
+          if (childRef.current) {
+            return childRef.current.getAnimalInfo();
+          } else {
+            return {} as AnimalSummaryType;
+          }
+        })
+        .filter(Boolean);
     }
     return cageSummary;
   }
@@ -94,11 +94,11 @@ export default class Cage2 extends React.Component<CageProps, CageState> {
         <div className="cage">
           <div className="container">
             <div className="row">
-              {this.state.animals.map( (object, i) => {
+              {this.state.animals.map((object, i) => {
                 const ref: React.RefObject<Animal> = React.createRef();
                 this.childRefs.push(ref);
                 return (
-                  <div className="col-sm-6" key={object.id} >
+                  <div className="col-sm-6" key={object.id}>
                     <Animal {...object} ref={ref} />
                   </div>
                 );
